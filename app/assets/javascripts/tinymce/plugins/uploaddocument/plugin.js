@@ -18,7 +18,7 @@
             {type: 'iframe',  url: 'javascript:void(0)'},
             {type: 'textbox', name: 'file', label: ed.translate('Choose a document'), subtype: 'file'},
             {type: 'textbox', name: 'alt',  label: ed.translate('Document description')},
-            {type: 'checkbox', name: "stored_document", id: "stored_document", label: ed.translate('Create a stored document?')},
+            // {type: 'checkbox', name: "stored_document", id: "stored_document", label: ed.translate('Create a stored document?')},
             {type: 'container', classes: 'error', html: "<p style='color: #b94a48;'>&nbsp;</p>"},
 
             // Trick TinyMCE to add a empty div that "preloads" the throbber image
@@ -61,7 +61,7 @@
         form.appendChild(createElement('input', {type: "hidden", name: "utf8", value: "✓"}));
         form.appendChild(createElement('input', {type: 'hidden', name: 'authenticity_token', value: getMetaContents('csrf-token')}));
         form.appendChild(createElement('input', {type: 'hidden', name: 'hint', value: ed.getParam("uploaddocument_hint", "")}));
-        form.appendChild(createElement('input', {type: 'hidden', name: "store_document", id: "store_document", value: 'false'}));
+        // form.appendChild(createElement('input', {type: 'hidden', name: "store_document", id: "store_document", value: 'false'}));
 
         var el = win.getEl();
         var body = document.getElementById(el.id + "-body");
