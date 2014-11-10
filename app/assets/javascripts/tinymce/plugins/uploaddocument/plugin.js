@@ -46,7 +46,7 @@
         /* WHY DO YOU HATE <form>, TINYMCE!? */
         iframe = win.find("iframe")[0];
         form = createElement('form', {
-          action: ed.getParam("uploaddocument_form_url", "/tinymce_documents"),
+          action: ed.getParam("uploaddocument_form_url", "/inline_documents"),
           target: iframe._id,
           method: "POST",
           enctype: 'multipart/form-data',
@@ -184,40 +184,40 @@
       }
 
       function buildHTML(json, default_text) {
-        var default_class = ed.getParam("uploaddocument_default_img_class", "");
-        var alt_text = getInputValue("alt");
+        var doc_type = "image";
+        var str_end = "/>";
+        var a_end = "";
+        var doc_text = '';
+        var doc = false;
+        var doc_class = ''
+        if (typeof(json["document"]) != "undefined") {
+          doc = true;
+          doc_type = "document";
+          str_end = "</a>";
+          a_end = ">";
+          doc_class = " orange";
+        }
+        var doc_obj = json[doc_type];
+        var default_class = "added-" + doc_type + doc_class;
+        var doc_str = "<img src='" + doc_obj["url"] + "'";
+        if (doc) {
+          doc_str = "<a href='" + doc_obj["url"] + "' target='_blank' type='octet-stream'";
+          doc_text = doc_obj["alt"] + " "
+        }
+        doc_str += " class='" + default_class + "'";
+        doc_str += a_end;
+        doc_str += doc_text;
+        if(json[doc_type]["height"])
+          doc_str += " height='" + doc_obj["height"] + "'";
+        if(json[doc_type]["width"])
+          doc_str += " width='"  + doc_obj["width"]  + "'";
 
-        var docstr = "<a href='" + json["document"]["url"] + "' target='_blank' type='octet-stream'";
+        if (!doc) {
+          doc_str += " alt='" + doc_text + "'"
+        }
+        doc_str += str_end;
 
-        if (default_class != "") {
-          docstr += " class='" + default_class + "'";
-				}
-
-				docstr += '>'
-
-				if (json["document"]["thumb"] && json["document"]["thumb"]["url"]) {
-					thumb_json = json["document"]["thumb"];
-
-					docstr += "<img src='" + thumb_json["url"] + "'";
-
-        	if (thumb_json["height"]) {
-          	docstr += " height='" + thumb_json["height"] + "'";
-					}
-
-					if (thumb_json["width"]) {
-          	docstr += " width='" + thumb_json["width"] + "'";
-					}
-
-					docstr += " alt='" + alt_text + "' />";
-				} else if (alt_text == "") {
-          docstr += ed.translate('Click for document');
-        } else {
-					docstr +=  alt_text;
-				}
-
-				docstr += "</a>";
-
-        return docstr;
+        return doc_str;
       }
 
       function getInputValue(name) {
