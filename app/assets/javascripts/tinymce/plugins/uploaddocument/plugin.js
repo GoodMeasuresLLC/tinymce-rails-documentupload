@@ -60,7 +60,8 @@
         // Create some needed hidden inputs
         form.appendChild(createElement('input', {type: "hidden", name: "utf8", value: "✓"}));
         form.appendChild(createElement('input', {type: 'hidden', name: 'authenticity_token', value: getMetaContents('csrf-token')}));
-        form.appendChild(createElement('input', {type: 'hidden', name: 'hint', value: ed.getParam("uploaddocument_hint", "")}));
+        form.appendChild(createElement('input', {type: 'hidden', name: 'relation_type', value: ed.getParam("uploaddocument_type", "")}));
+        form.appendChild(createElement('input', {type: 'hidden', name: 'relation_id', value: ed.getParam("uploaddocument_id", "")}));
         // form.appendChild(createElement('input', {type: 'hidden', name: "store_document", id: "store_document", value: 'false'}));
 
         var el = win.getEl();
