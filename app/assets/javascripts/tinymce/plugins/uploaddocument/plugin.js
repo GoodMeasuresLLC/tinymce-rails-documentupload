@@ -46,7 +46,7 @@
         /* WHY DO YOU HATE <form>, TINYMCE!? */
         iframe = win.find("iframe")[0];
         form = createElement('form', {
-          action: ed.getParam("uploaddocument_form_url", "/inline_documents"),
+          action: ed.getParam("uploaddocument_form_url", "/inline_attachments"),
           target: iframe._id,
           method: "POST",
           enctype: 'multipart/form-data',
