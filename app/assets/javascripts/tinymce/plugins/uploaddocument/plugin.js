@@ -181,7 +181,7 @@
 
       function buildHTML(json, default_text) {
         var doc_type = "image";
-        var str_end = "/>";
+        var str_end = "/></div>";
         var a_end = "";
         var doc_text = '';
         var doc = false;
@@ -189,15 +189,15 @@
         if (typeof(json["document"]) != "undefined") {
           doc = true;
           doc_type = "document";
-          str_end = "</a>";
+          str_end = " </a></div>";
           a_end = ">";
           doc_class = " orange";
         }
         var doc_obj = json[doc_type];
         var default_class = "added-" + doc_type + doc_class;
-        var doc_str = "<img src='" + doc_obj["url"] + "'";
+        var doc_str = "<div><img src='" + doc_obj["url"] + "'";
         if (doc) {
-          doc_str = "<a href='" + doc_obj["url"] + "' target='_blank' type='octet-stream'";
+          doc_str = "<div><a href='" + doc_obj["url"] + "' target='_blank' type='octet-stream'";
           doc_text = doc_obj["alt"] + " "
         }
         doc_str += " class='" + default_class + "'";
