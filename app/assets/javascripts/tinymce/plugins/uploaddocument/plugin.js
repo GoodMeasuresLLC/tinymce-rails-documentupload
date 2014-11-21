@@ -62,7 +62,6 @@
         form.appendChild(createElement('input', {type: 'hidden', name: 'authenticity_token', value: getMetaContents('csrf-token')}));
         form.appendChild(createElement('input', {type: 'hidden', name: 'relation_type', value: ed.getParam("uploaddocument_type", "")}));
         form.appendChild(createElement('input', {type: 'hidden', name: 'relation_id', value: ed.getParam("uploaddocument_id", "")}));
-        // form.appendChild(createElement('input', {type: 'hidden', name: "store_document", id: "store_document", value: 'false'}));
 
         var el = win.getEl();
         var body = document.getElementById(el.id + "-body");
@@ -142,15 +141,9 @@
           var json = tinymce.util.JSON.parse(ret);
 
           if(json["error"]) {
-            handleError(json["error"]["message"]);
+            handleError(json["error"]);
           } else {
-            var str = buildHTML(json);
-            if (ed.execCommand('mceInsertContent', false, str)) {
-              console.log(str);
-            } else {
-              console.log("Error");
-            }
-
+            ed.execCommand('mceInsertContent', false, buildHTML(json));
             ed.windowManager.close();
           }
         } catch(e) {
