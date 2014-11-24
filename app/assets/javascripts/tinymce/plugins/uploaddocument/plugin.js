@@ -179,7 +179,6 @@
       }
 
       function buildHTML(json) {
-        debugger
         var doc_type = "image";
         var str_end = "/></div>";
         var a_end = "";
