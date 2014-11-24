@@ -100,7 +100,6 @@
         if(getInputValue("file") == "") {
           return handleError('You must choose a file');
         }
-        debugger
         throbber = new top.tinymce.ui.Throbber(win.getEl());
         throbber.show();
 
@@ -137,6 +136,7 @@
       }
 
       function handleResponse(ret) {
+        debugger
         try {
           var json = tinymce.util.JSON.parse(ret);
           var error = ret.split("\"error\":\"")[1];
