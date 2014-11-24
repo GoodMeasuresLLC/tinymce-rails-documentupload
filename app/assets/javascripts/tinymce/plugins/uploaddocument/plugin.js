@@ -100,7 +100,7 @@
         if(getInputValue("file") == "") {
           return handleError('You must choose a file');
         }
-
+        debugger
         throbber = new top.tinymce.ui.Throbber(win.getEl());
         throbber.show();
 
@@ -179,7 +179,7 @@
         return el;
       }
 
-      function buildHTML(json, default_text) {
+      function buildHTML(json) {
         var doc_type = "image";
         var str_end = "/></div>";
         var a_end = "";
@@ -212,7 +212,6 @@
           doc_str += " alt='" + doc_text + "'"
         }
         doc_str += str_end;
-
         return doc_str;
       }
 
