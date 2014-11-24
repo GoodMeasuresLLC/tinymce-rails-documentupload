@@ -136,7 +136,6 @@
       }
 
       function handleResponse(ret) {
-        debugger
         try {
           var json = tinymce.util.JSON.parse(ret);
           var error = ret.split("\"error\":\"")[1];
@@ -180,6 +179,7 @@
       }
 
       function buildHTML(json) {
+        debugger
         var doc_type = "image";
         var str_end = "/></div>";
         var a_end = "";
