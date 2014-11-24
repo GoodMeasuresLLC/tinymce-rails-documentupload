@@ -19,7 +19,7 @@
             {type: 'textbox', name: 'file', label: ed.translate('Choose a document'), subtype: 'file'},
             {type: 'textbox', name: 'alt',  label: ed.translate('alt text')},
             // {type: 'checkbox', name: "stored_document", id: "stored_document", label: ed.translate('Create a stored document?')},
-            {type: 'container', classes: 'error', html: "<p style='color: #b94a48; overflow: auto;'>&nbsp;</p>"},
+            {type: 'container', classes: 'error', html: "<p style='color: #b94a48; white-space: normal;'>&nbsp;</p>"},
 
             // Trick TinyMCE to add a empty div that "preloads" the throbber image
             {type: 'container', classes: 'throbber'},
@@ -139,11 +139,11 @@
       function handleResponse(ret) {
         try {
           var json = tinymce.util.JSON.parse(ret);
-          var error_response = ret.split("\"error\":\"")[1].split("\"}")[0];
-          if (error_response) {
-            handleError(error_response);
-          } else if (json["error"]["message"]) {
-            handleError(json["error"]["message"]);
+          var error = ret.split("\"error\":\"")[1];
+          if (error) {
+            handleError(error.split("\"}")[0]);
+          } else if (json["error"]) {
+            handleError(json["error"]);
           } else {
             ed.execCommand('mceInsertContent', false, buildHTML(json));
             ed.windowManager.close();
