@@ -17,8 +17,6 @@
           body: [
             {type: 'iframe',  url: 'javascript:void(0)'},
             {type: 'textbox', name: 'file', label: ed.translate('Choose a document'), subtype: 'file'},
-            {type: 'textbox', name: 'alt',  label: ed.translate('alt text')},
-            // {type: 'checkbox', name: "stored_document", id: "stored_document", label: ed.translate('Create a stored document?')},
             {type: 'container', classes: 'error', html: "<p style='color: #b94a48; white-space: normal;'>&nbsp;</p>"},
 
             // Trick TinyMCE to add a empty div that "preloads" the throbber image
@@ -208,7 +206,7 @@
           doc_str += " width='"  + doc_obj["width"]  + "'";
 
         if (!doc) {
-          doc_str += " alt='" + doc_text + "'"
+          doc_str += " alt='" + doc_obj["alt"] + "'";
         }
         doc_str += str_end;
         return doc_str;
